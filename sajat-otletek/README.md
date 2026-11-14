@@ -1,10 +1,11 @@
-# 🎓 Pedagógiai ötletből interaktív taneszköz – Módszertani segédlet
+# 🎓 Pedagógiai ötletből interaktív taneszköz 
+## Módszertani segédlet
 
 Ez a segédlet abban támogat, hogy **programozói és játéktervezői előismeretek nélkül**, a saját tanórai céljaidból kiindulva készíts mobilbarát, böngészőben futó digitális taneszközöket az AI segítségével.
 
 ---
 
-## 🧩 Hogyan gondolkodj taneszköz-tervezőként?
+### 🧩 Hogyan gondolkodj taneszköz-tervezőként?
 
 Egy jó digitális taneszköz tervezése pont olyan, mint egy **óravázlat** elkészítése. Neked csak a **pedagógiai célt és a tananyagot** kell hoznod – a játékmechanika kitalálását és a programozást bízd az AI-ra!
 
@@ -15,7 +16,7 @@ A folyamat 3 építőelemből áll:
 
 ---
 
-## 🗺️ Pedagógiai fordítókulcs: Milyen célhoz milyen játék illik?
+### 🗺️ Pedagógiai fordítókulcs: Milyen célhoz milyen játék illik?
 
 Ha nem tudod, milyen játékot kérj az AI-tól, keresd ki a táblázatból a tanórai célodat!
 
@@ -29,11 +30,11 @@ Ha nem tudod, milyen játékot kérj az AI-tól, keresd ki a táblázatból a ta
 
 ---
 
-## 🚀 Kétlépcsős munkafolyamat az AI-val
+### 🚀 Kétlépcsős munkafolyamat az AI-val
 
 Ne próbálj meg elsőre tökéletes kódot kérni, ha még bizonytalan vagy a játék működésében! Használd ezt a két lépést:
 
-### 1. Lépés: Játékmechanika tervezése (Ötletelő prompt)
+#### 1. Lépés: Játékmechanika tervezése (Ötletelő prompt)
 Másold be ezt a promptot az AI-nak, töltsd ki a `[szögletes zárójeles]` részeket, és válassz a felkínált ötletek közül!
 
 ```text
@@ -54,7 +55,7 @@ Még ne írj kódot, csak a 3 koncepciót mutasd meg, hogy kiválaszthassam a le
 
 ---
 
-### 2. Lépés: A kész taneszköz legenerálása (Kivitelező prompt)
+#### 2. Lépés: A kész taneszköz legenerálása (Kivitelező prompt)
 Miután kiválasztottad a legszimpatikusabb ötletet (vagy már eleve tudod, mit szeretnél), használd ezt a sablont a kész `index.html` fájl elkészítéséhez:
 
 ```text
@@ -84,7 +85,7 @@ Design és technikai követelmények:
 
 ---
 
-## 💡 3 aranyszabály a kipróbáláshoz
+### 💡 3 aranyszabály a kipróbáláshoz
 
 1. **Mindig teszteld mobilon!** A diákok többsége telefonon nyitja meg a QR-kódot vagy a linket. Ha valami túl apró vagy lelóg a képernyőről, írd vissza az AI-nak: *"Tedd nagyobbá a gombokat és igazítsd a nézetet álló mobilképernyőhöz!"*
 2. **Ne félj finomítani!** Az első verzió csak egy kiindulópont. Bátran kérj módosításokat: *"Adj hozzá minden jó válasz után egy 1 mondatos magyarázatot!"* vagy *"Legyen benne 3 élet (szív), ami hibánál elfogy."*
