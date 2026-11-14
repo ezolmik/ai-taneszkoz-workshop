@@ -27,6 +27,16 @@ Ha nem tudod, milyen játékot kérj az AI-tól, keresd ki a táblázatból a ta
 | Kategorizálás, tulajdonságok szétválogatása | Kétirányú válogató | Középen megjelenik egy állítás vagy kép, a diák két gomb közül választ (pl. *Igaz / Hamis* vagy *Savas / Lúgos*). |
 | Ok-okozati összefüggések, döntéshozatal | Szituációs döntéshozó | Rövid helyzetleírás + 2-3 választási lehetőség, ahol minden döntés megváltoztat egy mérőszámot (pl. *erőforrás, elégedettség*). |
 | Gyors felismerés, kivételek keresése | Kakukktojás-kereső | 4-6 elem közül ki kell választani azt az egyet, amelyik nem illik a sorba, majd elolvasni az indoklást. |
+| Szövegértés, definíciók és kulcsszavak használata | Lyukas szöveg (Cloze test) | Hiányzó szavak behelyettesítése egy szövegbe egy megadott szóbankból kattintással. |
+| Idegen szavak, kulcsfogalmak helyesírása | Akasztófa / Szókitaláló | Fogalmak vagy szavak betűnkénti kitalálása korlátozott próbálkozással, vizuális visszajelzéssel. |
+| Fogalmak felidézése meghatározások alapján | Keresztrejtvény / Szókereső | Rácsban elrejtett kulcsszavak megkeresése vagy beírása a megadott definíciók alapján. |
+| Összefüggések keresése, rendszerező gondolkodás | Kategória-mátrix (Connections) | 16 összekevert fogalomból kell négy darab 4-es tematikus csoportot alkotni kattintással. |
+| Térképi tájékozódás, ábrák és részek azonosítása | Címkéző (Hotspot / Képfelismerő) | Egy ábra vagy térkép megjelölt pontjaira kattintva kell kiválasztani a megfelelő megnevezést. |
+| Összetettebb rendszerezés több szempont szerint | Többirányú válogató (Kosárba rakó) | Megjelenő elemek szétválogatása 3-4 különböző gyűjtődobozba (pl. *emlősök, hüllők, madarak*). |
+| Kritikus olvasás, hibajavítás, szabályalkalmazás | Hibakereső (Debug / Lektor) | Egy hibás szövegben, képletben vagy kódrészletben kell rákattintani a hibás elemekre. |
+| Tudásszint felmérése, fokozatos mélyítés | Lépcsőzetes kvíz (Milliomos) | Egyre nehezedő kérdések segítségekkel (pl. felező), ahol egy hiba megszakítja a sorozatot. |
+| Gyorsaság, automatizálás, reflexszerű tudás | Villámkvíz (Time Attack) | Minél több helyes válasz megadása 60 másodperc alatt, folyamatos kombó-pontozással. |
+| Komplex problémamegoldás, logikai láncolatok | Szabadulószoba (Mini Escape Room) | 3-4 egymásra épülő logikai feladvány, amelyek megoldása egy-egy számjegyet ad a végső lakatkódhoz. |
 
 ---
 
