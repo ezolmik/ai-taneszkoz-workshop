@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Melyik csoportba tartozik?</title>
+
+    <script>
+        // CSOPORTOK ÉS SZAVAK – itt módosíthatod a játék tartalmát.
+        const CSOPORTOK = [
+            {
+                nev: "Főnév",
+                szavak: ["kutya", "ceruza", "erdő", "barátság"]
+            },
+            {
+                nev: "Melléknév",
+                szavak: ["piros", "vidám", "puha", "savanyú"]
+            },
+            {
+                nev: "Ige",
+                szavak: ["fut", "olvas", "nevet", "alszik"]
+            }
+        ];
+    </script>
+
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: system-ui, sans-serif;
+            color: #202b39;
+            background: #f5f7fa;
+            line-height: 1.6;
+        }
+
+        * { box-sizing: border-box; }
+
+        body { margin: 0; }
+
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 32px 20px;
+        }
+
+        h1, h2, h3 { line-height: 1.2; }
+
+        h1 {
+            margin: 0 0 16px;
+            font-size: clamp(1.9rem, 5vw, 3rem);
+        }
+
+        .instructions {
+            margin: 0 0 24px;
+            color: #526174;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        #counter { font-weight: 700; }
+
+        progress {
+            display: block;
+            width: 100%;
+            height: 16px;
+            margin: 16px 0 24px;
+            accent-color: #247047;
+        }
+
+        .word-card {
+            display: grid;
+            place-items: center;
+            min-height: 150px;
+            padding: 24px;
+            border: 2px solid #c8d3e2;
+            border-radius: 18px;
+            background: white;
+        }
+
+        #word {
+            margin: 0;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            font-weight: 750;
+            text-align: center;
+            overflow-wrap: anywhere;
+            max-width: 100%;
+        }
+
+        .word-card.solved {
+            border-color: #247047;
+            background: #e4f4e9;
+            color: #185332;
+        }
+
+        button {
+            min-height: 52px;
+            padding: 12px 18px;
+            border: 2px solid #315caa;
+            border-radius: 12px;
+            background: white;
+            color: #315caa;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            touch-action: manipulation;
+            overflow-wrap: anywhere;
+        }
+
+        button:hover:not(:disabled) { background: #eef4ff; }
+
+        button:focus-visible {
+            outline: 3px solid #172c52;
+            outline-offset: 4px;
+        }
+
+        button:disabled {
+            border-color: #d9e1ec;
+            background: #f0f2f5;
+            color: #738095;
+            cursor: default;
+        }
+
+        .choices {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .choices button { font-size: 1.15rem; }
+
+        .feedback {
+            min-height: 84px;
+            margin: 20px 0 12px;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 650;
+        }
+
+        .feedback.success {
+            background: #e4f4e9;
+            color: #185332;
+        }
+
+        .feedback.error {
+            background: #fff0e5;
+            color: #803b0c;
+        }
+
+        #next {
+            width: 100%;
+            background: #315caa;
+            color: white;
+        }
+
+        #next:hover { background: #244780; }
+
+        [hidden] { display: none !important; }
+
+        .collection-heading {
+            margin-top: 36px;
+            font-size: 1.4rem;
+        }
+
+        .collections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .collection {
+            padding: 20px;
+            background: white;
+            border: 1px solid #d9e1ec;
+            border-radius: 14px;
+        }
+
+        .collection h3 { margin: 0 0 16px; }
+
+        .collection ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .collection li {
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: #eaf0f8;
+            overflow-wrap: anywhere;
+            max-width: 100%;
+        }
+
+        .empty {
+            margin: 0;
+            color: #526174;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 480px) {
+            main { padding: 24px 16px; }
+
+            .choices {
+                grid-template-columns: 1fr;
+            }
+
+            .word-card { min-height: 120px; }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>Melyik csoportba tartozik?</h1>
+            <p class="instructions" id="instructions">
+                Sorold a szavakat a megfelelő szófajhoz!
+                Kattints a csoport nevére. Ha hibázol, újrapróbálhatod.
+                Nincs időkorlát.
+            </p>
+        </header>
+
+        <div class="toolbar">
+            <span id="counter"></span>
+            <button id="restart" type="button">Újrakezdés</button>
+        </div>
+
+        <progress id="progress" aria-label="Helyesen besorolt szavak"></progress>
+
+        <section aria-label="Az aktuális szó besorolása"
+                 aria-describedby="instructions">
+            <div class="word-card" id="word-card">
+                <h2 id="word"></h2>
+            </div>
+
+            <div class="choices" id="choices"
+                 role="group" aria-label="Válassz csoportot"></div>
+
+            <p id="feedback" class="feedback" role="status"
+               aria-live="polite" aria-atomic="true"></p>
+
+            <button id="next" type="button" hidden>Következő szó →</button>
+        </section>
+
+        <section aria-labelledby="collection-heading">
+            <h2 class="collection-heading" id="collection-heading">
+                Már besorolt szavak
+            </h2>
+            <div class="collections" id="collections"></div>
+        </section>
+
+        <noscript>A játékhoz engedélyezd a JavaScript futtatását!</noscript>
+    </main>
+
+    <script>
+        "use strict";
+
+        const wordElement = document.getElementById("word");
+        const wordCard = document.getElementById("word-card");
+        const choices = document.getElementById("choices");
+        const collections = document.getElementById("collections");
+        const feedback = document.getElementById("feedback");
+        const counter = document.getElementById("counter");
+        const progress = document.getElementById("progress");
+        const nextButton = document.getElementById("next");
+        const restartButton = document.getElementById("restart");
+
+        let words = [];
+        let position = 0;
+        let found = 0;
+        let solved = false;
+        let collectionLists = [];
+        let emptyLabels = [];
+
+        function shuffle(items) {
+            const result = [...items];
+
+            for (let i = result.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [result[i], result[j]] = [result[j], result[i]];
+            }
+
+            return result;
+        }
+
+        function showFeedback(message, type = "") {
+            feedback.textContent = message;
+            feedback.className = `feedback ${type}`.trim();
+        }
+
+        function updateProgress() {
+            counter.textContent =
+                `Helyesen besorolt szavak: ${found} / ${words.length}`;
+
+            progress.max = words.length || 1;
+            progress.value = found;
+        }
+
+        function setChoicesDisabled(disabled) {
+            for (const button of choices.querySelectorAll("button")) {
+                button.disabled = disabled;
+            }
+        }
+
+        function showCurrentWord() {
+            solved = false;
+            wordCard.classList.remove("solved");
+            wordElement.textContent = words[position].text;
+            nextButton.hidden = true;
+            setChoicesDisabled(false);
+            showFeedback("");
+        }
+
+        function answer(groupIndex) {
+            if (solved || !words.length) return;
+
+            const current = words[position];
+
+            if (current.group !== groupIndex) {
+                showFeedback(
+                    "Ez még nem a megfelelő csoport. Próbáld újra!",
+                    "error"
+                );
+                return;
+            }
+
+            // Azonnal lezárjuk a választ, így dupla kattintással sem
+            // lehet ugyanazt a szót többször beszámítani.
+            solved = true;
+            found++;
+
+            setChoicesDisabled(true);
+            wordCard.classList.add("solved");
+
+            const item = document.createElement("li");
+            item.textContent = current.text;
+            collectionLists[groupIndex].append(item);
+            emptyLabels[groupIndex].hidden = true;
+
+            updateProgress();
+
+            if (found === words.length) {
+                nextButton.hidden = true;
+                showFeedback(
+                    `Gratulálok! Mind a ${words.length} szót helyesen ` +
+                    "besoroltad! A teljes gyűjteményed lent látható. 🎉",
+                    "success"
+                );
+                restartButton.focus();
+                return;
+            }
+
+            showFeedback(
+                `✓ Helyes! „${current.text}” → ${CSOPORTOK[groupIndex].nev}.`,
+                "success"
+            );
+
+            nextButton.hidden = false;
+            nextButton.focus();
+        }
+
+        function buildGroups() {
+            choices.replaceChildren();
+            collections.replaceChildren();
+            collectionLists = [];
+            emptyLabels = [];
+
+            CSOPORTOK.forEach((group, index) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.textContent = group.nev;
+                button.addEventListener("click", () => answer(index));
+                choices.append(button);
+
+                const section = document.createElement("section");
+                section.className = "collection";
+
+                const heading = document.createElement("h3");
+                heading.id = `group-heading-${index}`;
+                heading.textContent = group.nev;
+                section.setAttribute("aria-labelledby", heading.id);
+
+                const empty = document.createElement("p");
+                empty.className = "empty";
+                empty.textContent = "Ide kerülnek a megtalált szavak.";
+
+                const list = document.createElement("ul");
+                list.setAttribute("aria-labelledby", heading.id);
+
+                section.append(heading, empty, list);
+                collections.append(section);
+
+                collectionLists.push(list);
+                emptyLabels.push(empty);
+            });
+        }
+
+        function restart() {
+            words = shuffle(
+                CSOPORTOK.flatMap((group, groupIndex) =>
+                    group.szavak.map(text => ({
+                        text,
+                        group: groupIndex
+                    }))
+                )
+            );
+
+            position = 0;
+            found = 0;
+            solved = false;
+
+            buildGroups();
+            updateProgress();
+
+            if (!words.length) {
+                wordElement.textContent = "Még nincsenek szavak.";
+                wordCard.classList.remove("solved");
+                nextButton.hidden = true;
+                setChoicesDisabled(true);
+                showFeedback("Adj meg szavakat a játék adatlistájában!");
+                return;
+            }
+
+            showCurrentWord();
+            showFeedback("Kezdhetjük! Melyik csoportba tartozik a szó?");
+        }
+
+        nextButton.addEventListener("click", () => {
+            if (!solved || position >= words.length - 1) return;
+
+            position++;
+            showCurrentWord();
+
+            const firstChoice = choices.querySelector("button");
+            firstChoice?.focus();
+
+            showFeedback(`Következő szó: ${words[position].text}.`);
+        });
+
+        restartButton.addEventListener("click", restart);
+
+        restart();
+    </script>
+</body>
+</html>
