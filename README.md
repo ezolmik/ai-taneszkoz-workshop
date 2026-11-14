@@ -1,7 +1,6 @@
-# Ötletből kattintható taneszköz
-Mesterséges intelligenciával.
+## Ötletből kattintható taneszköz
 
-**A pedagógiai célt és az ötleteket te hozod; az AI a megvalósításban segít.**
+A pedagógiai célt és az ötleteket Te hozod; az AI a megvalósításban segít.
 
 ```mermaid
 flowchart LR
@@ -12,7 +11,7 @@ flowchart LR
         M --> O
     end
 
-    subgraph B["Publikálás"]
+    subgraph B["Fejlesztés és Publikálás"]
         direction TB
         K["Próba és javítás"] --> C[Commit]
         C --> D[Deployment]
@@ -26,13 +25,13 @@ Programozói előismeret nem szükséges. Hozz ötletet és telefont!
 
 🌐 [A workshop oldala](https://ezolmik.github.io/ai-taneszkoz-workshop/)
 
-## A repóban
+### A repóban
 
 - 📄 [index.html](index.html) – a workshop főoldala
 - 📁 [prezentacio/](prezentacio/) – rövid böngészős prezentáció
 - 📁 [peldak/](peldak/) – játékok és a hozzájuk tartozó promptok
 
-## Most te jössz!
+### Most te jössz!
 
 1. **Fork:** készíts saját másolatot erről a repóról.
 2. **Pages:** publikáld a saját oldaladat GitHub Pages-en.
