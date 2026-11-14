@@ -3,8 +3,25 @@ Mesterséges intelligenciával.
 
 **A pedagógiai célt és az ötleteket te hozod; az AI a megvalósításban segít.**
 
-Ötlet → Prompt → Taneszköz → Kipróbálás és javítás → Commit → Deployment
+```mermaid
+flowchart TB
+    subgraph alkotas["A taneszköz alakítása"]
+        direction LR
+        O["Ötlet"] --> P["Prompt"]
+        P --> M["Taneszköz (MVP)"]
+        M --> O
+    end
 
+    subgraph publikalas["Kipróbálás és publikálás"]
+        direction LR
+        K["Kipróbálás és javítás"] --> C["Commit"]
+        C --> D["Deployment"]
+        D --> K
+    end
+
+    M --> K
+    K -. Tapasztalat .-> O
+```
 Programozói előismeret nem szükséges. Hozz ötletet és telefont!
 
 🌐 [A workshop oldala](https://ezolmik.github.io/ai-taneszkoz-workshop/)
