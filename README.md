@@ -19,8 +19,7 @@ flowchart LR
         D --> K
     end
 
-    A --> B
-    B -. Tapasztalat .-> A
+    A <--> B
 ```
 
 Programozói előismeret nem szükséges. Hozz ötletet és telefont!
