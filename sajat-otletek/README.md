@@ -40,6 +40,22 @@ Ha nem tudod, milyen játékot kérj az AI-tól, keresd ki a táblázatból a ta
 
 ---
 
+### 📋 Hogyan építsd be az óravázlatodba?
+
+Az elkészült digitális taneszköz nem önmagában álló érdekesség, hanem a **standard óravázlatod „Eszközök” oszlopának legrugalmasabb eleme**, amelyre komplett órai stratégiát építhetsz:
+
+| Óravázlat oszlopai | Hogyan tölti meg tartalommal a saját taneszköz? |
+| :--- | :--- |
+| **Eszközök** | Saját készítésű mobilbarát webalkalmazás (QR-kóddal vagy rövid linkkel kivetítve), okostelefonok. |
+| **Munkaformák** | **Egyéni munka** (saját tempójú gyakorlás, pl. *Villámkvíz*), **páros munka** (közös érvelés és döntés, pl. *Szituációs játék*), vagy **csoportverseny** (pl. *Mini Escape Room* kódjának közös megfejtése). |
+| **Módszerek** | Gamifikáció (játékosítás), azonnali visszacsatoláson alapuló formatív értékelés, felfedeztető tanulás, differenciálás. |
+| **Tanári tevékenység** | **Facilitálás és megfigyelés**: a folyamat elindítása, a hibás válaszokból adódó tipikus tévképzetek kiszűrése és célzott megbeszélése. |
+| **Diáktevékenység** | Aktív interakció, próbálkozás és hibázás kockázat nélkül, azonnali önellenőrzés, a játékszabályokból adódó logikai következtetés. |
+
+> 💡 **Tipp a differenciáláshoz:** Mivel a kód a tiéd, ugyanannak a játékmotornak készíthetsz egy *alap* és egy *haladó* (pl. nehezebb fogalmakat vagy kevesebb életet adó) verziót is. Két külön QR-kóddal oszthatod ki őket az osztályban, így mindenki a saját szintjén haladhat.
+
+---
+
 ### 🚀 Kétlépcsős munkafolyamat az AI-val
 
 Ne próbálj meg elsőre tökéletes kódot kérni, ha még bizonytalan vagy a játék működésében! Használd ezt a két lépést:
