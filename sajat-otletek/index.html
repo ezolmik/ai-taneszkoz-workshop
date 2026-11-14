@@ -17,7 +17,7 @@
         body { margin: 0; }
 
         main {
-            max-width: 1100px;
+            max-width: 850px;
             margin: auto;
             padding: 40px 24px;
         }
@@ -32,63 +32,65 @@
         h1, h2 { line-height: 1.2; }
 
         h1 {
-            margin: 28px 0 16px;
+            margin: 28px 0 12px;
             font-size: clamp(2rem, 5vw, 3rem);
             letter-spacing: -0.035em;
         }
 
-        .intro { color: #526174; }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
-            margin: 32px 0;
-            padding: 0;
-            list-style: none;
-            counter-reset: steps;
+        .intro {
+            margin: 0 0 32px;
+            color: #526174;
         }
 
-        .step {
-            min-width: 0;
+        .stage {
+            margin: 20px 0;
             padding: 24px;
             background: white;
             border: 1px solid #d9e1ec;
             border-radius: 16px;
-            counter-increment: steps;
         }
 
-        .step::before {
-            content: counter(steps);
+        .stage h2 {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 0 0 20px;
+            font-size: 1.3rem;
+        }
+
+        .number {
             display: grid;
             place-items: center;
-            width: 36px;
-            height: 36px;
-            margin-bottom: 20px;
+            flex-shrink: 0;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: #eaf0fb;
             color: #315caa;
-            font-weight: 750;
+            font-size: 1.1rem;
         }
 
-        .step h2 {
-            margin: 0 0 12px;
-            font-size: 1.2rem;
-        }
-
-        .step p {
+        ol {
             margin: 0;
-            color: #526174;
+            padding-left: 24px;
+        }
+
+        li { padding-left: 4px; }
+        li + li { margin-top: 14px; }
+
+        .result {
+            margin: 20px 0 0;
+            padding-top: 14px;
+            border-top: 1px solid #e5e9ef;
+            color: #247047;
+            font-weight: 650;
         }
 
         .tip {
-            margin: 32px 0;
-            padding-left: 20px;
-            border-left: 4px solid #315caa;
+            margin: 16px 0 0;
+            color: #526174;
+            font-size: 0.95rem;
         }
-
-        .tip h2 { font-size: 1.2rem; }
-        .tip p { margin: 8px 0; }
 
         code {
             padding: 2px 5px;
@@ -99,23 +101,14 @@
         }
 
         footer {
-            margin-top: 40px;
+            margin-top: 32px;
             padding-top: 20px;
             border-top: 1px solid #d9e1ec;
         }
 
-        @media (max-width: 850px) {
-            .steps {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
         @media (max-width: 560px) {
             main { padding: 28px 20px; }
-
-            .steps {
-                grid-template-columns: 1fr;
-            }
+            .stage { padding: 20px; }
         }
     </style>
 </head>
@@ -125,83 +118,85 @@
             <a href="../index.html">← Workshop</a>
             <h1>A saját ötleteidé a terep</h1>
             <p class="intro">
-                Kezdd egy apró változtatással, aztán alakítsd a saját diákjaidhoz!
+                Három kis kör. Mindegyik végén megállhatsz egy működő eredménnyel.
             </p>
         </header>
 
-        <ol class="steps">
-            <li class="step">
-                <h2>Készíts saját másolatot!</h2>
-                <p>
-                    Jelentkezz be a GitHubra, nyisd meg a
-                    <a href="https://github.com/ezolmik/ai-taneszkoz-workshop">workshop repóját</a>,
-                    és kattints a <strong>Fork</strong> gombra.
-                </p>
-            </li>
+        <section class="stage" aria-labelledby="sajat-oldal">
+            <h2 id="sajat-oldal">
+                <span class="number" aria-hidden="true">1</span>
+                Legyen saját oldalad!
+            </h2>
+            <ol>
+                <li>
+                    Jelentkezz be a GitHubra, és a
+                    <a href="https://github.com/ezolmik/ai-taneszkoz-workshop">workshop repójáról</a>
+                    készíts saját másolatot a <strong>Fork</strong> gombbal.
+                </li>
+                <li>
+                    A saját repódban nyisd meg:
+                    <strong>Settings → Pages</strong>.
+                    Válaszd a <strong>Deploy from a branch</strong> lehetőséget,
+                    a <code>main</code> ágat és a <code>/(root)</code> mappát,
+                    majd kattints a <strong>Save</strong> gombra.
+                    A publikálás után nyisd meg az itt megjelenő webcímet!
+                </li>
+            </ol>
+            <p class="result">✓ Már van saját, megosztható oldalad.</p>
+        </section>
 
-            <li class="step">
-                <h2>Publikáld a saját oldaladat!</h2>
-                <p>
-                    A saját repódban:
-                    <strong>Settings → Pages → Deploy from a branch</strong>.
-                    Válaszd a <code>main</code> ágat és a <code>/(root)</code>
-                    mappát, majd kattints a <strong>Save</strong> gombra.
-                </p>
-            </li>
-
-            <li class="step">
-                <h2>Írj át valamit!</h2>
-                <p>
-                    Nyisd meg az egyik példa <code>index.html</code> fájlját.
-                    A ceruza gombbal szerkesztheted:
-                    cserélj ki egy szópárt vagy egy feliratot!
-                </p>
-            </li>
-
-            <li class="step">
-                <h2>Mentsd el, próbáld ki!</h2>
-                <p>
-                    Kattints a <strong>Commit changes</strong> gombra,
-                    és erősítsd meg a mentést.
-                    Várd meg a deploymentet, majd nyisd meg
-                    a saját oldaladat és ellenőrizd a változást.
-                </p>
-            </li>
-
-            <li class="step">
-                <h2>Gondold tovább az AI-val!</h2>
-                <p>
-                    Írd át egy példa promptját a saját ötletedre,
-                    és add be az AI-nak. A kapott HTML-t próbáld ki,
-                    majd cseréld le vele a játék fájlját.
-                </p>
-            </li>
-
-            <li class="step">
-                <h2>Őrizd meg a promptot is!</h2>
-                <p>
-                    A játék mappájában lévő <code>README.md</code>
-                    tartalmát is frissítsd.
-                    Így a saját ötleted és a megvalósítása együtt marad.
-                </p>
-            </li>
-        </ol>
-
-        <section class="tip" aria-labelledby="elso-lepes">
-            <h2 id="elso-lepes">Az első módosításod?</h2>
-            <p>
-                A párosító játékban cseréld le a
-                <code>garden – kert</code> szópárt erre:
-                <code>bear – medve</code>.
-            </p>
-            <p>
-                Ehhez még AI sem kell. Egy böngészőből, akár tabletről is
-                megcsinálhatod.
+        <section class="stage" aria-labelledby="elso-valtoztatas">
+            <h2 id="elso-valtoztatas">
+                <span class="number" aria-hidden="true">2</span>
+                Változtass meg egy apróságot!
+            </h2>
+            <ol>
+                <li>
+                    A saját repódban nyisd meg a
+                    <code>peldak/parosito/index.html</code> fájlt.
+                    Kattints a ceruzára, és a szópárok listájában
+                    írd át a <code>garden</code> szót <code>bear</code>-re,
+                    a hozzá tartozó <code>kert</code> szót pedig
+                    <code>medve</code>-re.
+                </li>
+                <li>
+                    A <strong>Commit changes</strong> gombbal
+                    mentsd el a módosítást a <code>main</code> ágra.
+                    Várd meg a deploymentet, majd frissítsd
+                    a saját oldaladon a játékot!
+                </li>
+            </ol>
+            <p class="result">✓ Megjelent a saját változtatásod.</p>
+            <p class="tip">
+                Ehhez még AI sem kell — egy böngészőből, akár tabletről is megy.
             </p>
         </section>
 
+        <section class="stage" aria-labelledby="sajat-otlet">
+            <h2 id="sajat-otlet">
+                <span class="number" aria-hidden="true">3</span>
+                Valósítsd meg a saját ötletedet!
+            </h2>
+            <ol>
+                <li>
+                    Válassz egy
+                    <a href="../peldak/index.html">példát</a>,
+                    és írd át a generáló promptját a saját ötletedre.
+                    Add be az AI-nak, és próbáld ki az elkészült játékot!
+                </li>
+                <li>
+                    A saját repódban cseréld le a kiválasztott játék
+                    <code>README.md</code> tartalmát az új promptra,
+                    az <code>index.html</code> tartalmát pedig az új kódra.
+                    Mentsd el a változtatásokat, várd meg a deploymentet,
+                    és próbáld ki a saját oldaladon is!
+                </li>
+            </ol>
+            <p class="result">✓ A saját pedagógiai ötletedből taneszköz lett.</p>
+        </section>
+
         <footer>
-            <a href="../peldak/index.html">Válassz egy példát a kezdéshez →</a>
+            <a href="../peldak/index.html">A példákhoz →</a>
         </footer>
     </main>
 </body>
