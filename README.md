@@ -41,8 +41,8 @@ A folytatáshoz:
 
 - Kérd meg az AI-t, hogy az elképzeléseid szerint módosítsa a kódot,
   majd próbáld ki az eredményt.
-- Első lépésként cseréld le például a `workshop-1/index.html` vagy
-  `workshop-2/index.html` fáj tartalmát egy saját módosított verzióra.
+- Első lépésként cseréld le például a `peldak/jatekok/workshop-1/index.html` vagy
+  `peldak/jatekok/workshop-2/index.html` fáj tartalmát egy saját módosított verzióra.
 
 
 Később saját mappastruktúrát, promptgyűjteményt és taneszköztárat is
