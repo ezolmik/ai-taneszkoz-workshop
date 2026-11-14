@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,8 +14,13 @@
             line-height: 1.6;
         }
 
-        * { box-sizing: border-box; }
-        body { margin: 0; }
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
 
         main {
             max-width: 850px;
@@ -22,14 +28,19 @@
             padding: 40px 24px;
         }
 
-        a { color: #315caa; }
+        a {
+            color: #315caa;
+        }
 
         a:focus-visible {
             outline: 3px solid #315caa;
             outline-offset: 5px;
         }
 
-        h1, h2 { line-height: 1.2; }
+        h1,
+        h2 {
+            line-height: 1.2;
+        }
 
         h1 {
             margin: 28px 0 12px;
@@ -75,8 +86,13 @@
             padding-left: 24px;
         }
 
-        li { padding-left: 4px; }
-        li + li { margin-top: 14px; }
+        li {
+            padding-left: 4px;
+        }
+
+        li+li {
+            margin-top: 14px;
+        }
 
         .result {
             margin: 20px 0 0;
@@ -107,11 +123,17 @@
         }
 
         @media (max-width: 560px) {
-            main { padding: 28px 20px; }
-            .stage { padding: 20px; }
+            main {
+                padding: 28px 20px;
+            }
+
+            .stage {
+                padding: 20px;
+            }
         }
     </style>
 </head>
+
 <body>
     <main>
         <header>
@@ -129,20 +151,32 @@
             </h2>
             <ol>
                 <li>
-                    Jelentkezz be a GitHubra, és a
-                    <a href="https://github.com/ezolmik/ai-taneszkoz-workshop">workshop repójáról</a>
-                    készíts saját másolatot a <strong>Fork</strong> gombbal.
+                    Jelentkezz be a GitHubra, és készíts másolatot a
+                    <a href="https://github.com/ezolmik/ai-taneszkoz-workshop">workshop</a>
+                    repójáról a <strong>Fork</strong> gombbal.
+                </li>
+                <li> 
+                    
+                    Nyisd meg: <code>Settings → Pages</code>.
+                    
+                    <ul>
+                        <li>
+                            Válaszd a <code>Deploy from a branch</code> lehetőséget.
+                        </li>
+                        <li>
+                            Válaszd a <code>main</code> ágat és a <code>/(root)</code> mappát.
+                        </li>
+
+                    </ul>
                 </li>
                 <li>
-                    A saját repódban nyisd meg:
-                    <strong>Settings → Pages</strong>.
-                    Válaszd a <strong>Deploy from a branch</strong> lehetőséget,
-                    a <code>main</code> ágat és a <code>/(root)</code> mappát,
-                    majd kattints a <strong>Save</strong> gombra.
-                    A publikálás után nyisd meg az itt megjelenő webcímet!
+                    Kattints a <code>Save</code> gombra.
+                </li>
+                <li>
+                    A publikálás befejeztével nyisd meg az új oldalad itt megjelenő webcímét!
                 </li>
             </ol>
-            <p class="result">✓ Már van saját, megosztható oldalad.</p>
+            <p class="result">✓ Ezzel lett egy új publikus weboldalad.</p>
         </section>
 
         <section class="stage" aria-labelledby="elso-valtoztatas">
@@ -154,16 +188,18 @@
                 <li>
                     A saját repódban nyisd meg a
                     <code>peldak/parosito/index.html</code> fájlt.
+                </li>
+                <li>
                     Kattints a ceruzára, és a szópárok listájában
                     írd át a <code>garden</code> szót <code>bear</code>-re,
                     a hozzá tartozó <code>kert</code> szót pedig
                     <code>medve</code>-re.
                 </li>
                 <li>
-                    A <strong>Commit changes</strong> gombbal
-                    mentsd el a módosítást a <code>main</code> ágra.
-                    Várd meg a deploymentet, majd frissítsd
-                    a saját oldaladon a játékot!
+                    A <code>Commit changes</code> gombbal mentsd el a módosítást.
+                </li>
+                <li>
+                    Várd meg a deploymentet, majd frissítsd a saját oldaladon a játékot!
                 </li>
             </ol>
             <p class="result">✓ Megjelent a saját változtatásod.</p>
@@ -182,14 +218,19 @@
                     Válassz egy
                     <a href="../peldak/index.html">példát</a>,
                     és írd át a generáló promptját a saját ötletedre.
-                    Add be az AI-nak, és próbáld ki az elkészült játékot!
                 </li>
                 <li>
-                    A saját repódban cseréld le a kiválasztott játék
-                    <code>README.md</code> tartalmát az új promptra,
-                    az <code>index.html</code> tartalmát pedig az új kódra.
-                    Mentsd el a változtatásokat, várd meg a deploymentet,
-                    és próbáld ki a saját oldaladon is!
+                    Add be az AI-nak, és mentsd el a generált kódot az <code>index.html</code> fájlba.
+                </li>
+                <li>
+                    A saját repódban a kiválasztott játékban cseréld le az 
+                    <code>index.html</code> fájl tartalmát az új kódra.
+                </li>
+                <li>
+                    A <code>Commit changes</code> gombbal mentsd el a változtatásokat.
+                </li>
+                <li>
+                    Várd meg a deploymentet, majd frissítsd a saját oldaladon a játékot!
                 </li>
             </ol>
             <p class="result">✓ A saját pedagógiai ötletedből taneszköz lett.</p>
@@ -200,4 +241,5 @@
         </footer>
     </main>
 </body>
+
 </html>
