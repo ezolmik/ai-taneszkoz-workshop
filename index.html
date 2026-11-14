@@ -23,14 +23,13 @@
         }
 
         main {
-            max-width: 960px;
+            max-width: 1100px;
             margin: auto;
             padding: 56px 24px;
         }
 
         h1,
-        h2,
-        h3 {
+        h2 {
             line-height: 1.2;
         }
 
@@ -48,25 +47,21 @@
             font-size: 0.85rem;
         }
 
-        .subtitle {
-            font-size: 1.25rem;
-            color: #526174;
-            margin-top: 0;
-        }
-
         .intro {
-            max-width: 720px;
+            color: #526174;
         }
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 16px;
-            margin: 32px 0 40px;
+            margin: 32px 0;
         }
 
         .card {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
             padding: 24px;
             background: white;
             color: inherit;
@@ -85,27 +80,27 @@
             outline-offset: 5px;
         }
 
-        .card h3 {
-            margin: 0 0 10px;
+        .card h2 {
+            margin: 0 0 12px;
+            font-size: 1.2rem;
         }
 
         .card p {
-            margin: 0 0 16px;
+            margin: 0 0 24px;
             color: #526174;
         }
 
         .go {
+            margin-top: auto;
             color: #315caa;
             font-weight: 650;
         }
 
-        .followup {
+        .mission {
+            margin: 32px 0;
+            padding-left: 20px;
             border-left: 4px solid #315caa;
-            padding: 4px 0 4px 24px;
-        }
-
-        .followup h2 {
-            margin-top: 0;
+            font-weight: 650;
         }
 
         footer {
@@ -119,7 +114,13 @@
             color: #315caa;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 850px) {
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 560px) {
             main {
                 padding: 32px 20px;
             }
@@ -136,61 +137,37 @@
         <header>
             <div class="eyebrow">Workshop · közös alkotás</div>
             <h1>Ötletből kattintható taneszköz</h1>
-
-            <div class="intro">
-                <p>Programozói előismeret nem szükséges.</p>
-            </div>
         </header>
+
+        <p class="mission">
+            A pedagógiai célt és az ötleteket te hozod;
+            az AI a megvalósításban segít.
+        </p>
 
         <nav aria-label="A workshop anyagai" class="cards">
             <a class="card" href="prezentacio/index.html">
-                <h3>Prezentáció</h3>
+                <h2>Prezentáció</h2>
                 <p>Az ötlettől a taneszközig vezető közös utunk.</p>
                 <span class="go">Megnyitás →</span>
             </a>
 
             <a class="card" href="peldak/index.html">
-                <h3>Példák és közös alkotások</h3>
-                <p>
-                    Három ötletadó játék és a workshopon készített taneszközök.
-                </p>
+                <h2>Példák és közös alkotások</h2>
+                <p>Ötletadó játékok és a workshopokon készített taneszközök.</p>
                 <span class="go">Kipróbálom →</span>
             </a>
+
+            <a class="card" href="sajat-otletek/index.html">
+                <h2>Saját ötletek</h2>
+                <p>Készíts saját másolatot, és alakítsd tovább!</p>
+                <span class="go">Hogyan kezdjek hozzá? →</span>
+            </a>
         </nav>
-        <section class="followup" aria-labelledby="folytatas">
-            <h2 id="folytatas">A saját ötleteidé a terep</h2>
-            <p>
-                A workshop egy kezdőlökés: innen saját promptgyűjteményt
-                és taneszköztárat is építhetsz.
-            </p>
-            <p>
-                <strong>A pedagógiai célt és az ötleteket te hozod;
-                    az AI a megvalósításban segít.</strong>
-            </p>
-            <ol>
-                <li>
-                    Készíts saját másolatot a
-                    <a href="https://github.com/ezolmik/ai-taneszkoz-workshop">workshop repójáról</a>
-                    a GitHub <strong>Fork</strong> gombjával.
-                </li>
-                <li>
-                    Alakítsd tovább a <strong>taneszközeinket</strong> az AI segítségével!
-                </li>
-                <li>
-                    Mentsd el a változtatásokat egy <strong>committal</strong>,
-                    és publikáld a saját verziódat <strong>GitHub Pages-en</strong>!
-                </li>
-            </ol>
-            <p>
-                <strong>Tipp:</strong> Kezdd egy aprósággal, amihez még AI sem kell:
-                írj át egy feliratot, vagy tegyél egy emojit az egyik játékba.
-                Mentsd el, publikáld, és nézd meg a változást a saját oldaladon!
-            </p>
-        </section>
 
         <footer>
+            <p class="intro">Programozói előismeret nem szükséges.</p>
             <a href="https://github.com/ezolmik/ai-taneszkoz-workshop">
-                A workshop forrása és a folytatás lépései a GitHubon →
+                A workshop forrása a GitHubon →
             </a>
         </footer>
     </main>
