@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,61 +14,85 @@
             line-height: 1.6;
         }
 
-        * { box-sizing: border-box; }
-        body { margin: 0; }
-
-        main {
-            max-width: 960px;
-            margin: auto;
-            padding: 40px 24px;
+        * {
+            box-sizing: border-box;
         }
 
-        a { color: #315caa; }
+        body {
+            margin: 0;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 32px 24px;
+        }
+
+        a {
+            color: #315caa;
+        }
 
         a:focus-visible {
             outline: 3px solid #315caa;
             outline-offset: 5px;
         }
 
-        h1, h2, h3 { line-height: 1.2; }
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2;
+        }
 
         h1 {
             font-size: clamp(2rem, 5vw, 3rem);
             letter-spacing: -0.035em;
         }
 
-        .intro { max-width: 700px; color: #526174; }
+        .intro {
+            color: #526174;
+        }
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 16px;
-            margin: 24px 0 40px;
+            margin: 20px 0 32px;
         }
 
         .card {
             display: flex;
             flex-direction: column;
-            padding: 24px;
+            min-width: 0;
+            padding: 18px;
             background: white;
             border: 1px solid #d9e1ec;
-            border-radius: 16px;
+            border-radius: 14px;
         }
 
-        .card h3 { margin: 0 0 12px; }
-        .card p { margin: 0 0 24px; color: #526174; }
+        .card h3 {
+            margin: 0 0 12px;
+        }
+
+        .card p {
+            margin: 0 0 20px;
+            color: #526174;
+        }
 
         .actions {
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 10px 14px;
             margin-top: auto;
+            font-size: 0.9rem;
         }
 
         .play {
-            display: inline-block;
-            padding: 12px 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 10px 14px;
             border-radius: 10px;
             background: #315caa;
             color: white;
@@ -75,29 +100,37 @@
             font-weight: 650;
         }
 
-        .play:hover { background: #244780; }
+        .play:hover {
+            background: #244780;
+        }
 
         footer {
             border-top: 1px solid #d9e1ec;
             padding-top: 20px;
         }
 
-        @media (max-width: 600px) {
-            main { padding: 28px 20px; }
-            .cards { grid-template-columns: 1fr; }
+        @media (max-width: 850px) {
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 560px) {
+            main {
+                padding: 28px 20px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
     <main>
         <header>
-            <a href="../index.html">← A workshop főoldala</a>
-            <h1>Példák és közös alkotások</h1>
-            <p class="intro">
-                Próbáld ki a játékokat! Mindegyik mellett megtalálod
-                a generáló promptot is: átírhatod a saját tantárgyadhoz,
-                és elkészíttetheted a saját változatodat.
-            </p>
+            <a href="../index.html">← Workshop</a>
         </header>
 
         <section aria-labelledby="otletado">
@@ -105,50 +138,42 @@
 
             <div class="cards">
                 <article class="card">
-                    <h3>Találd meg a párját!</h3>
-                    <p>
-                        Párosítsd az angol szavakat a magyar jelentésükkel!
-                        A szópárok helyére fogalmak és meghatározások is kerülhetnek.
-                    </p>
+                    <h3>Párosító</h3>
+                    <p>Angol szavak és magyar jelentésük.</p>
                     <div class="actions">
-                        <a class="play" href="parosito/index.html">
-                            Párosító indítása →
+                        <a class="play" href="parosito/index.html" aria-label="Párosító megnyitása">
+                            Megnyitás →
                         </a>
-                        <a href="https://github.com/ezolmik/ai-taneszkoz-workshop/tree/main/peldak/parosito">
+                        <a href="https://github.com/ezolmik/ai-taneszkoz-workshop/tree/main/peldak/parosito"
+                            aria-label="Párosító: prompt és forrás">
                             Prompt és forrás
                         </a>
                     </div>
                 </article>
 
                 <article class="card">
-                    <h3>Rakd sorrendbe!</h3>
-                    <p>
-                        A bab elültetésétől az első lomblevelekig.
-                        Ugyanígy rendezhetők történelmi események
-                        vagy egy kísérlet lépései is.
-                    </p>
+                    <h3>Sorrendező</h3>
+                    <p>A magvetéstől a lomblevelekig.</p>
                     <div class="actions">
-                        <a class="play" href="sorrendezo/index.html">
-                            Sorrendező indítása →
+                        <a class="play" href="sorrendezo/index.html" aria-label="Sorrendező megnyitása">
+                            Megnyitás →
                         </a>
-                        <a href="https://github.com/ezolmik/ai-taneszkoz-workshop/tree/main/peldak/sorrendezo">
+                        <a href="https://github.com/ezolmik/ai-taneszkoz-workshop/tree/main/peldak/sorrendezo"
+                            aria-label="Sorrendező: prompt és forrás">
                             Prompt és forrás
                         </a>
                     </div>
                 </article>
 
                 <article class="card">
-                    <h3>Melyik csoportba tartozik?</h3>
-                    <p>
-                        Főnév, melléknév vagy ige?
-                        A csoportokat és a példákat más tantárgy
-                        témáira is lecserélheted.
-                    </p>
+                    <h3>Csoportosító</h3>
+                    <p>Főnév, melléknév vagy ige?</p>
                     <div class="actions">
-                        <a class="play" href="csoportosito/index.html">
-                            Csoportosító indítása →
+                        <a class="play" href="csoportosito/index.html" aria-label="Csoportosító megnyitása">
+                            Megnyitás →
                         </a>
-                        <a href="https://github.com/ezolmik/ai-taneszkoz-workshop/tree/main/peldak/csoportosito">
+                        <a href="https://github.com/ezolmik/ai-taneszkoz-workshop/tree/main/peldak/csoportosito"
+                            aria-label="Csoportosító: prompt és forrás">
                             Prompt és forrás
                         </a>
                     </div>
@@ -157,33 +182,30 @@
         </section>
 
         <section aria-labelledby="kozos">
-            <h2 id="kozos">A workshopokon készül</h2>
-            <p class="intro">
-                Ezeket a helyeket a két csoport saját ötleteivel töltjük meg.
-            </p>
+            <h2 id="kozos">Közös alkotások</h2>
 
             <div class="cards">
                 <article class="card">
-                    <h3>Első workshop</h3>
-                    <p>Az első csoporttal közösen készített taneszköz helye.</p>
+                    <h3>Workshop #1</h3>
                     <div class="actions">
-                        <a class="play" href="workshop-1/index.html">
+                        <a class="play" href="workshop-1/index.html" aria-label="Workshop #1 taneszközének megnyitása">
                             Megnyitás →
                         </a>
-                        <a href="https://github.com/ezolmik/ai-taneszkoz-workshop/tree/main/peldak/workshop-1">
+                        <a href="https://github.com/ezolmik/ai-taneszkoz-workshop/tree/main/peldak/workshop-1"
+                            aria-label="Workshop #1: prompt és forrás">
                             Prompt és forrás
                         </a>
                     </div>
                 </article>
 
                 <article class="card">
-                    <h3>Második workshop</h3>
-                    <p>A második csoporttal közösen készített taneszköz helye.</p>
+                    <h3>Workshop #2</h3>
                     <div class="actions">
-                        <a class="play" href="workshop-2/index.html">
+                        <a class="play" href="workshop-2/index.html" aria-label="Workshop #2 taneszközének megnyitása">
                             Megnyitás →
                         </a>
-                        <a href="https://github.com/ezolmik/ai-taneszkoz-workshop/tree/main/peldak/workshop-2">
+                        <a href="https://github.com/ezolmik/ai-taneszkoz-workshop/tree/main/peldak/workshop-2"
+                            aria-label="Workshop #2: prompt és forrás">
                             Prompt és forrás
                         </a>
                     </div>
@@ -192,10 +214,11 @@
         </section>
 
         <footer>
-            <a href="https://github.com/ezolmik/ai-taneszkoz-workshop"> 
-                Saját változatot készítenél? Irány a GitHub-repó! →
+            <a href="https://github.com/ezolmik/ai-taneszkoz-workshop">
+                Készíts saját másolatot! GitHub → Fork
             </a>
         </footer>
     </main>
 </body>
+
 </html>
