@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ötletből kattintható taneszköz</title>
+    <style>
+        :root {
+            font-family: system-ui, sans-serif;
+            color: #202b39;
+            background: white;
+            color-scheme: light;
+        }
+
+        * { box-sizing: border-box; }
+        body { margin: 0; }
+        [hidden] { display: none !important; }
+
+        .slide {
+            min-height: 100svh;
+            max-width: 1440px;
+            margin: auto;
+            padding: 7vh 5vw 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1, h2 {
+            margin: 0 0 7vh;
+            font-size: clamp(2rem, 4.5vw, 4.5rem);
+            line-height: 1.15;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+        }
+
+        .cycles {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 16px;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        svg text { font-family: system-ui, sans-serif; }
+
+        .connection {
+            color: #9ca6b4;
+            font-size: clamp(2rem, 4vw, 4rem);
+        }
+
+        .questions {
+            display: grid;
+            gap: 5vh;
+            font-size: clamp(1.6rem, 3.5vw, 3.3rem);
+            line-height: 1.25;
+        }
+
+        .questions p { margin: 0; }
+
+        .questions strong {
+            color: #315caa;
+            font-weight: 650;
+        }
+
+        .journey {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: clamp(1.5rem, 3vw, 3rem);
+            line-height: 1.25;
+        }
+
+        .journey span { flex: 1; }
+        .journey b { color: #b2bac5; font-weight: 400; }
+        .journey .last { color: #315caa; font-weight: 700; }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 5vw;
+            background: white;
+        }
+
+        footer a {
+            color: #526174;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .navigation {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        #page {
+            color: #526174;
+            font-size: 0.9rem;
+        }
+
+        button {
+            width: 48px;
+            height: 48px;
+            border: 0;
+            border-radius: 50%;
+            background: #f0f3f7;
+            color: #315caa;
+            font: inherit;
+            font-size: 1.5rem;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        button:hover:not(:disabled) { background: #dfe8f8; }
+
+        button:disabled {
+            color: #bbc2cc;
+            cursor: default;
+        }
+
+        a:focus-visible, button:focus-visible {
+            outline: 3px solid #315caa;
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 700px) {
+            .slide {
+                padding: 32px 24px 100px;
+            }
+
+            h1, h2 { margin-bottom: 32px; }
+
+            .cycles {
+                grid-template-columns: 1fr;
+                gap: 0;
+                width: 100%;
+                max-width: 430px;
+                margin: auto;
+            }
+
+            .connection {
+                text-align: center;
+                transform: rotate(90deg);
+            }
+
+            .journey {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .journey b { transform: rotate(90deg); }
+            .questions { gap: 32px; }
+        }
+
+        @media print {
+            footer { display: none; }
+
+            .slide, .slide[hidden] {
+                display: flex !important;
+                min-height: 90vh;
+                break-after: page;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <!-- 1. DIA -->
+        <section class="slide" aria-labelledby="title-1">
+            <h1 id="title-1">Ötletből taneszköz</h1>
+
+            <div class="cycles">
+                <svg viewBox="0 0 460 330" role="img"
+                     aria-labelledby="cycle-1-title">
+                    <title id="cycle-1-title">
+                        Ötlet → Prompt → Product (MVP) → újabb ötlet.
+                    </title>
+
+                    <defs>
+                        <marker id="blue-arrow" viewBox="0 0 10 10"
+                                refX="9" refY="5" markerWidth="6"
+                                markerHeight="6" orient="auto">
+                            <path d="M 0 0 L 10 5 L 0 10 Z"
+                                  fill="#315caa"/>
+                        </marker>
+                    </defs>
+
+                    <g fill="none" stroke="#315caa" stroke-width="3"
+                       stroke-linecap="round"
+                       marker-end="url(#blue-arrow)">
+                        <path d="M 290 65 Q 390 100 365 198"/>
+                        <path d="M 305 278 Q 230 325 150 278"/>
+                        <path d="M 95 198 Q 70 100 170 65"/>
+                    </g>
+
+                    <g text-anchor="middle" fill="#315caa"
+                       font-size="29" font-weight="650">
+                        <text x="230" y="58">Ötlet</text>
+                        <text x="350" y="247">Prompt</text>
+                        <text x="110" y="239">Product</text>
+                    </g>
+
+                    <text x="110" y="268" text-anchor="middle"
+                          font-size="20" fill="#526174">(MVP)</text>
+                </svg>
+
+                <span class="connection" aria-label="Összekapcsolódnak">⇄</span>
+
+                <svg viewBox="0 0 460 330" role="img"
+                     aria-labelledby="cycle-2-title">
+                    <title id="cycle-2-title">
+                        Kipróbálás és javítás → Commit →
+                        Deployment → újabb kipróbálás.
+                    </title>
+
+                    <defs>
+                        <marker id="green-arrow" viewBox="0 0 10 10"
+                                refX="9" refY="5" markerWidth="6"
+                                markerHeight="6" orient="auto">
+                            <path d="M 0 0 L 10 5 L 0 10 Z"
+                                  fill="#247047"/>
+                        </marker>
+                    </defs>
+
+                    <g fill="none" stroke="#247047" stroke-width="3"
+                       stroke-linecap="round"
+                       marker-end="url(#green-arrow)">
+                        <path d="M 330 72 Q 395 110 365 198"/>
+                        <path d="M 305 278 Q 230 325 150 278"/>
+                        <path d="M 95 198 Q 65 110 130 72"/>
+                    </g>
+
+                    <g text-anchor="middle" fill="#247047"
+                       font-size="27" font-weight="650">
+                        <text x="230" y="43">Kipróbálás</text>
+                        <text x="230" y="76">és javítás</text>
+                        <text x="350" y="247">Commit</text>
+                        <text x="110" y="247"
+                              font-size="24">Deployment</text>
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <!-- 2. DIA -->
+        <section class="slide" aria-labelledby="title-2" hidden>
+            <h2 id="title-2">Készítsük el együtt!</h2>
+
+            <div class="questions">
+                <p><strong>Kinek</strong> készül?</p>
+                <p><strong>Mit</strong> gyakoroltat?</p>
+                <p><strong>Mi legyen</strong> az első változat?</p>
+            </div>
+        </section>
+
+        <!-- 3. DIA -->
+        <section class="slide" aria-labelledby="title-3" hidden>
+            <h2 id="title-3">Most te jössz!</h2>
+
+            <div class="journey">
+                <span>Saját másolat</span>
+                <b aria-hidden="true">→</b>
+                <span>Saját változtatás</span>
+                <b aria-hidden="true">→</b>
+                <span class="last">Saját taneszköz</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="../index.html">← Workshop</a>
+
+        <nav class="navigation" aria-label="Diák közötti lapozás">
+            <button id="previous" type="button" aria-label="Előző dia">
+                ←
+            </button>
+            <span id="page" role="status" aria-live="polite"></span>
+            <button id="next" type="button" aria-label="Következő dia">
+                →
+            </button>
+        </nav>
+    </footer>
+
+    <script>
+        "use strict";
+
+        const slides = [...document.querySelectorAll(".slide")];
+        const previous = document.getElementById("previous");
+        const next = document.getElementById("next");
+        const page = document.getElementById("page");
+
+        let current = 0;
+
+        function showSlide(index) {
+            const target = Math.max(0, Math.min(index, slides.length - 1));
+            if (target === current && page.textContent) return;
+
+            current = target;
+
+            slides.forEach((slide, i) => {
+                slide.hidden = i !== current;
+            });
+
+            previous.disabled = current === 0;
+            next.disabled = current === slides.length - 1;
+            page.textContent = `${current + 1} / ${slides.length}`;
+
+            if (document.activeElement === next && next.disabled) {
+                previous.focus();
+            } else if (
+                document.activeElement === previous && previous.disabled
+            ) {
+                next.focus();
+            }
+
+            window.scrollTo(0, 0);
+        }
+
+        previous.addEventListener("click", () => showSlide(current - 1));
+        next.addEventListener("click", () => showSlide(current + 1));
+
+        document.addEventListener("keydown", event => {
+            if (event.altKey || event.ctrlKey || event.metaKey ||
+                event.shiftKey || event.defaultPrevented) return;
+
+            if (event.target instanceof HTMLElement &&
+                (event.target.isContentEditable ||
+                 event.target.matches("input, textarea, select"))) return;
+
+            if (event.key === "ArrowRight" || event.key === "PageDown") {
+                event.preventDefault();
+                showSlide(current + 1);
+            } else if (
+                event.key === "ArrowLeft" || event.key === "PageUp"
+            ) {
+                event.preventDefault();
+                showSlide(current - 1);
+            } else if (event.key === "Home") {
+                event.preventDefault();
+                showSlide(0);
+            } else if (event.key === "End") {
+                event.preventDefault();
+                showSlide(slides.length - 1);
+            }
+        });
+
+        showSlide(0);
+    </script>
+</body>
+</html>
