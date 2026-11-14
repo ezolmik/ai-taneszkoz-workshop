@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ötletből kattintható taneszköz</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: system-ui, sans-serif;
+            color: #202b39;
+            background: #f5f7fa;
+            line-height: 1.6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        main {
+            max-width: 960px;
+            margin: auto;
+            padding: 56px 24px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2;
+        }
+
+        h1 {
+            margin: 12px 0;
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            letter-spacing: -0.035em;
+        }
+
+        .eyebrow {
+            color: #315caa;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #526174;
+            margin-top: 0;
+        }
+
+        .intro {
+            max-width: 720px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin: 32px 0 40px;
+        }
+
+        .card {
+            display: block;
+            padding: 24px;
+            background: white;
+            color: inherit;
+            text-decoration: none;
+            border: 1px solid #d9e1ec;
+            border-radius: 16px;
+        }
+
+        .card:hover {
+            border-color: #315caa;
+            background: #eef4ff;
+        }
+
+        a:focus-visible {
+            outline: 3px solid #315caa;
+            outline-offset: 5px;
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+        }
+
+        .card p {
+            margin: 0 0 16px;
+            color: #526174;
+        }
+
+        .go {
+            color: #315caa;
+            font-weight: 650;
+        }
+
+        .followup {
+            border-left: 4px solid #315caa;
+            padding: 4px 0 4px 24px;
+        }
+
+        .followup h2 {
+            margin-top: 0;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #d9e1ec;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: #315caa;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 32px 20px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <div class="eyebrow">Workshop · közös alkotás</div>
+            <h1>Ötletből kattintható taneszköz</h1>
+            <p class="subtitle">Mesterséges intelligenciával</p>
+
+            <div class="intro">
+                <p>
+                    Hogyan lesz egy tanári ötletből telefonon is használható
+                    gyakorlójáték? Néhány taneszköz rövid bemutatása után
+                    közösen is készítünk egy egyszerű példát.
+                </p>
+                <p>
+                    Megfogalmazzuk a kérésünket az AI-nak, kipróbáljuk, javítjuk,
+                    elmentjük az eredményt, majd közzétesszük GitHub Pages-en.
+                </p>
+                <p>
+                    <strong>Programozói előismeret nem szükséges.</strong>
+                    Hozz tantárgyi ötletet és a kipróbáláshoz telefont!
+                </p>
+            </div>
+        </header>
+
+        <nav aria-label="A workshop anyagai" class="cards">
+            <a class="card" href="prezentacio/index.html">
+                <h3>Prezentáció</h3>
+                <p>Az ötlettől a megosztható taneszközig vezető közös utunk.</p>
+                <span class="go">Megnyitás →</span>
+            </a>
+
+            <a class="card" href="peldak/index.html">
+                <h3>Ötletadó példák</h3>
+                <p>Párosító, sorrendező és csoportosító játékok.</p>
+                <span class="go">Kipróbálom →</span>
+            </a>
+
+            <a class="card" href="workshop-1/index.html">
+                <h3>Első workshop</h3>
+                <p>Itt kap helyet az első csoporttal közösen készített taneszköz.</p>
+                <span class="go">Megnyitás →</span>
+            </a>
+
+            <a class="card" href="workshop-2/index.html">
+                <h3>Második workshop</h3>
+                <p>Itt kap helyet a második csoporttal közösen készített taneszköz.</p>
+                <span class="go">Megnyitás →</span>
+            </a>
+        </nav>
+
+        <section class="followup" aria-labelledby="folytatas">
+            <h2 id="folytatas">A saját ötleteidé a terep</h2>
+            <p>
+                <strong>A pedagógiai célt és az ötleteket te hozod;
+                    az AI a megvalósításban segít.</strong>
+            </p>
+            <p>
+                Készíts saját másolatot a repóról, alakítsd át a taneszközöket
+                az AI segítségével, és publikáld a saját változatodat!
+                Kezdetnek akár az egyik workshop játékát is lecserélheted.
+            </p>
+            <p>
+                A workshop egy kezdőlökés. Innen saját promptgyűjteményt
+                és taneszköztárat is építhetsz.
+            </p>
+        </section>
+
+        <footer>
+            <a href="https://github.com/ezolmik/ai-taneszkoz-workshop">
+                A workshop forrása és a folytatás lépései a GitHubon →
+            </a>
+        </footer>
+    </main>
+</body>
+
+</html>
