@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rakd sorrendbe!</title>
+
+    <script>
+        // LÉPÉSEK – itt módosíthatod a tartalmat.
+        // A listában mindig a HELYES SORRENDET add meg!
+        const LEPESEK = [
+            "Földet teszünk egy lyukas aljú cserépbe.",
+            "Elvetjük a babmagot, és földdel betakarjuk.",
+            "Megöntözzük a földet.",
+            "A megfelelő körülmények között a mag csírázni kezd: megjelenik a gyököcske.",
+            "A hajtás kibújik a földből.",
+            "Kifejlődnek az első lomblevelek."
+        ];
+    </script>
+
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: system-ui, sans-serif;
+            color: #202b39;
+            background: #f5f7fa;
+            line-height: 1.6;
+        }
+
+        * { box-sizing: border-box; }
+        body { margin: 0; }
+
+        main {
+            max-width: 850px;
+            margin: auto;
+            padding: 32px 20px;
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.15;
+        }
+
+        .intro {
+            margin: 0 0 12px;
+            font-size: 1.15rem;
+        }
+
+        .instructions {
+            margin: 0 0 24px;
+            color: #526174;
+        }
+
+        .steps {
+            display: grid;
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: white;
+            border: 2px solid #d9e1ec;
+            border-radius: 14px;
+        }
+
+        .step-text {
+            flex: 1;
+            min-width: 0;
+            margin: 0;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            overflow-wrap: anywhere;
+        }
+
+        .move-buttons {
+            display: flex;
+            flex-shrink: 0;
+            gap: 8px;
+        }
+
+        button {
+            min-height: 48px;
+            padding: 10px 16px;
+            border: 2px solid #315caa;
+            border-radius: 10px;
+            background: white;
+            color: #315caa;
+            font: inherit;
+            font-weight: 650;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        button:hover:not(:disabled) {
+            background: #eef4ff;
+        }
+
+        button:focus-visible {
+            outline: 3px solid #172c52;
+            outline-offset: 4px;
+        }
+
+        button:disabled {
+            border-color: #d9e1ec;
+            background: #f0f2f5;
+            color: #738095;
+            cursor: default;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .primary {
+            background: #315caa;
+            color: white;
+        }
+
+        .primary:hover:not(:disabled) {
+            background: #244780;
+        }
+
+        .feedback {
+            min-height: 80px;
+            margin: 20px 0 0;
+            padding: 16px;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            font-weight: 650;
+        }
+
+        .feedback.success {
+            background: #e4f4e9;
+            border-color: #247047;
+            color: #185332;
+        }
+
+        .feedback.error {
+            background: #fff0e5;
+            border-color: #b85b19;
+            color: #803b0c;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        @media (max-width: 600px) {
+            main { padding: 24px 16px; }
+
+            .step {
+                align-items: stretch;
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px;
+            }
+
+            .move-buttons { justify-content: flex-end; }
+
+            .actions button { flex: 1; }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>Rakd sorrendbe!</h1>
+            <p class="intro">
+                Állítsd időrendbe egy bab elültetésének
+                és fejlődésének lépéseit!
+            </p>
+            <p class="instructions" id="instructions">
+                A „Fel” és „Le” gombokkal mozgathatod a kártyákat.
+                Ha elkészültél, nyomd meg az „Ellenőrzés” gombot!
+                Nyugodtan gondolkodj, nincs időkorlát.
+            </p>
+        </header>
+
+        <ul class="steps" id="steps" aria-label="Rendezendő lépések"
+            aria-describedby="instructions"></ul>
+
+        <div class="actions">
+            <button class="primary" id="check" type="button">
+                Ellenőrzés
+            </button>
+            <button id="restart" type="button">
+                Újrakezdés
+            </button>
+        </div>
+
+        <p id="feedback" class="feedback" role="status"
+           aria-live="polite" aria-atomic="true"></p>
+
+        <p id="movement" class="sr-only" role="status"
+           aria-live="polite" aria-atomic="true"></p>
+
+        <noscript>A játékhoz engedélyezd a JavaScript futtatását!</noscript>
+    </main>
+
+    <script>
+        "use strict";
+
+        const stepsElement = document.getElementById("steps");
+        const feedback = document.getElementById("feedback");
+        const movement = document.getElementById("movement");
+
+        let order = [];
+
+        function shuffle(items) {
+            const result = [...items];
+
+            for (let i = result.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [result[i], result[j]] = [result[j], result[i]];
+            }
+
+            return result;
+        }
+
+        function isCorrect(items) {
+            return items.every((id, position) => id === position);
+        }
+
+        function clearFeedback() {
+            feedback.textContent = "";
+            feedback.className = "feedback";
+        }
+
+        function move(id, direction) {
+            const from = order.indexOf(id);
+            const to = from + direction;
+
+            if (from < 0 || to < 0 || to >= order.length) return;
+
+            [order[from], order[to]] = [order[to], order[from]];
+
+            clearFeedback();
+            render();
+
+            // A fókusz kövesse a mozgatott kártyát.
+            const card = stepsElement.children[to];
+            const preferred = card.querySelector(
+                direction === -1 ? ".up" : ".down"
+            );
+            const focusTarget = preferred.disabled
+                ? card.querySelector("button:not(:disabled)")
+                : preferred;
+
+            focusTarget?.focus();
+
+            movement.textContent =
+                `Áthelyezve: ${LEPESEK[id]} Új hely: ${to + 1}.`;
+        }
+
+        function createMoveButton(id, direction, disabled) {
+            const button = document.createElement("button");
+            const up = direction === -1;
+
+            button.type = "button";
+            button.className = up ? "up" : "down";
+            button.textContent = up ? "↑ Fel" : "↓ Le";
+            button.disabled = disabled;
+            button.setAttribute(
+                "aria-label",
+                `${up ? "Fel" : "Le"}: ${LEPESEK[id]}`
+            );
+            button.addEventListener("click", () => move(id, direction));
+
+            return button;
+        }
+
+        function render() {
+            stepsElement.replaceChildren();
+
+            order.forEach((id, position) => {
+                const card = document.createElement("li");
+                card.className = "step";
+
+                const text = document.createElement("p");
+                text.className = "step-text";
+                text.textContent = LEPESEK[id];
+
+                const controls = document.createElement("div");
+                controls.className = "move-buttons";
+
+                controls.append(
+                    createMoveButton(id, -1, position === 0),
+                    createMoveButton(id, 1, position === order.length - 1)
+                );
+
+                card.append(text, controls);
+                stepsElement.append(card);
+            });
+        }
+
+        function check() {
+            const correct = isCorrect(order);
+
+            feedback.className =
+                `feedback ${correct ? "success" : "error"}`;
+
+            feedback.textContent = correct
+                ? "Gratulálok! Minden lépést helyes sorrendbe tettél! 🌱"
+                : "Ez még nem a helyes sorrend. Gondold végig újra, " +
+                  "mi mi után történik, és próbálkozz tovább!";
+        }
+
+        function restart() {
+            const ids = LEPESEK.map((_, id) => id);
+            order = shuffle(ids);
+
+            // A kezdő sorrend biztosan ne legyen a megoldás.
+            if (order.length > 1 && isCorrect(order)) {
+                [order[0], order[1]] = [order[1], order[0]];
+            }
+
+            clearFeedback();
+            movement.textContent = "";
+            render();
+        }
+
+        document.getElementById("check").addEventListener("click", check);
+
+        document.getElementById("restart").addEventListener("click", () => {
+            restart();
+            movement.textContent = "Új játék. A kártyákat összekevertük.";
+        });
+
+        restart();
+    </script>
+</body>
+</html>
