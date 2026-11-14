@@ -1,49 +1,26 @@
-# Ötletből kattintható taneszköz – mesterséges intelligenciával
-
-Hogyan lesz egy tanári ötletből telefonon is használható gyakorlójáték? Néhány taneszköz rövid bemutatása után közösen is készítünk egy egyszerű példát:
-
-- megfogalmazzuk a kérésünket az AI-nak,
-- kipróbáljuk, javítjuk, elmentjük az eredményt,
-- majd közzétesszük GitHub Pages-en.
-
-**Programozói előismeret nem szükséges.** Tantárgyi ötleteket és a kipróbáláshoz telefont érdemes hozni!
-
-## Milyen taneszközt készítsünk?
-
-Néhány ötlet, amiből kiindulhatunk:
-
-- **Párosító játék:** idegen szavak és jelentésük, fogalmak és meghatározásuk.
-- **Sorrendező:** történelmi események vagy egy kísérlet lépései.
-- **Csoportosító:** síkidomok, szófajok vagy élőlények besorolása.
-
-Más, saját tantárgyi ötletet is szívesen fogadok!
-
-## A workshop anyagai
-
-Ebben a repóban kap helyet a prezentáció, a felhasznált promptok
-és a két workshopon közösen elkészített taneszköz.
-
-## A workshop után: a saját ötleteidé a terep
+# Ötletből kattintható taneszköz
+Mesterséges intelligenciával.
 
 **A pedagógiai célt és az ötleteket te hozod; az AI a megvalósításban segít.**
 
-A workshop egy kezdőlökés a saját pedagógiai ötleteid megvalósításához.
-Az itt elkészített taneszközöket továbbalakíthatod, új tartalommal töltheted
-meg, vagy egészen más eszközt készíthetsz az AI segítségével.
+Ötlet → Prompt → Taneszköz → Kipróbálás és javítás → Commit → Deployment
 
-A folytatáshoz:
+Programozói előismeret nem szükséges. Hozz ötletet és telefont!
 
-- Készíts erről a repóról egy saját másolatot a GitHub **Fork** funkciójával. 
-  - A forkolás csak egy gombnyomás!
-  - Az AI ebben is segít, ha ilyet még sose csináltál.
-  - Vajon megtalálod-e a Fork gombot saját magad?
-- Publikáld a klónozott repódat a GitHub Pages-en!
+🌐 [A workshop oldala](https://ezolmik.github.io/ai-taneszkoz-workshop/)
 
-- Kérd meg az AI-t, hogy az elképzeléseid szerint módosítsa a kódot,
-  majd próbáld ki az eredményt.
-- Első lépésként cseréld le például a `peldak/jatekok/workshop-1/index.html` vagy
-  `peldak/jatekok/workshop-2/index.html` fáj tartalmát egy saját módosított verzióra.
+## A repóban
 
+- 📄 [index.html](index.html) – a workshop főoldala
+- 📁 [prezentacio/](prezentacio/) – rövid böngészős prezentáció
+- 📁 [peldak/](peldak/) – játékok és a hozzájuk tartozó promptok
 
-Később saját mappastruktúrát, promptgyűjteményt és taneszköztárat is
-kialakíthatsz.
+## Most te jössz!
+
+1. **Fork:** készíts saját másolatot erről a repóról.
+2. **Pages:** publikáld a saját oldaladat GitHub Pages-en.
+3. **Alakítsd tovább:** írj át egy szópárt, feliratot vagy emojit.
+4. **Commit:** mentsd el, majd nézd meg a publikált változást!
+
+Nagyobb ötleted van? Írd át az egyik példa promptját,
+és készíttesd el az új taneszközt az AI-al!
