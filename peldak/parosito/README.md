@@ -1,5 +1,6 @@
 # Párosító játék – generáló prompt
 
+```markdown
 Készíts egyszerű angol–magyar szópárosító gyakorlójátékot
 felső tagozatos diákoknak!
 
@@ -42,3 +43,4 @@ A szópárokat a kód elején, egy jól megjelölt adatlistában
 tárold, hogy később könnyen lecserélhetők legyenek.
 
 A válaszban a teljes index.html kódját add meg.
+```

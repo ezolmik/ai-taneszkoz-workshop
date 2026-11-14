@@ -1,5 +1,6 @@
 # Sorrendező játék – generáló prompt
 
+```markdown
 Készíts egyszerű sorrendező gyakorlójátékot felső tagozatos
 diákoknak!
 
@@ -50,3 +51,4 @@ helyes sorrendben tárold, hogy később könnyen
 lecserélhetők legyenek.
 
 A válaszban a teljes index.html kódját add meg.
+```

@@ -1,5 +1,6 @@
 # Csoportosító játék – generáló prompt
 
+```markdown
 Készíts egyszerű szófaj szerinti csoportosító gyakorlójátékot
 felső tagozatos diákoknak!
 
@@ -49,3 +50,4 @@ egy jól megjelölt adatszerkezetben tárold, hogy később
 más tantárgyhoz is könnyen átírható legyen.
 
 A válaszban a teljes index.html kódját add meg.
+```
