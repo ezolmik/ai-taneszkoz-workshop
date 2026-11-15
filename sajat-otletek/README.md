@@ -11,32 +11,49 @@ Egy jó digitális taneszköz tervezése pont olyan, mint egy **óravázlat** el
 
 A folyamat 3 építőelemből áll:
 1. **A) Játéktípus** *(Mi a keret?)*
-2. **B) Játékmenet** *(Mit csinál pontosan a diák?)*
+2. **B) Játékmenet** *(Mit csinál pontosan a diák, és milyen visszajelzést kap?)*
 3. **C) Tartalom** *(A te szaktárgyi tudásod és tananyagod)*
+
+<details>
+<summary>🧠 <strong>Haladó játéktervezési alapelvek (MDA &amp; Feedback) – Kattints a kinyitáshoz!</strong></summary>
+<br>
+
+Ha nemcsak egy működő kvízt szeretnél, hanem tudatosan terveznéd meg a diákok tanulási élményét is, érdemes az **MDA-keretrendszer** (*Mechanics – Dynamics – Aesthetics*) logikáját követni:
+
+* **1. Szabályok és mechanikák (Mechanics):** A játék elemi építőkövei (pl. időkorlát, 3 élet, pontozás, kártyahúzás, sorrendbe állítás). Ezeket írod le a promptban.
+* **2. Játékmeneti dinamika (Dynamics):** Ami a szabályok és a diák döntéseinek találkozásából születik (pl. az időnyomás gyors reflexekre ösztönöz; a limitált életek megfontoltságra nevelnek a vaktában tippelgetés helyett).
+* **3. Pedagógiai hatás és élmény (Aesthetics):** A végső kognitív és érzelmi cél (pl. a felfedezés öröme, a flow-állapot elérése, vagy a biztonságos, tét nélküli hibázás élménye).
+
+#### 🔄 Visszacsatolási hurkok (Feedback Loops) az osztályteremben
+Egy jó oktatójáték kétféle visszacsatolással tartja egyensúlyban a nehézséget (Flow-csatorna):
+* **Negatív visszacsatolás (Felzárkóztatás és differenciálás):** Ha a diák hibázik, a rendszer nemcsak piros X-et ad, hanem segít (pl. ad egy rávezető tippet, vagy a hibás kártyát visszateszi a pakli végére, hogy később újra találkozzon vele).
+* **Pozitív visszacsatolás (Motiváció fenntartása):** Sorozatos jó válaszoknál (kombó) vizuális megerősítést ad, vagy megnyit egy nehezebb bónusz kihívást.
+
+</details>
 
 ---
 
-### 🗺️ Pedagógiai fordítókulcs: Milyen célhoz milyen játék illik?
+### 🗺️ Pedagógiai fordítókulcs (LM-GM mátrix): Milyen célhoz milyen játék illik?
 
-Ha nem tudod, milyen játékot kérj az AI-tól, keresd ki a táblázatból a tanórai célodat!
+A táblázat a Bloom-taxonómia kognitív szintjei szerint rendezi a pedagógiai célokat és a hozzájuk illő játékmechanikákat. Keresd ki a tanórai célodat!
 
-| Pedagógiai cél (Amit a tanár tud) | Ajánlott játéktípus (A) | Játékmenet lényege (B) |
-| :--- | :--- | :--- |
-| Fogalmak, szakszavak, évszámok rögzítése | Kártyapárosító / Memória | Két oszlopban kattintással összeköthető párok, azonnali visszajelzéssel. |
-| Folyamatok, időrend, hierarchia gyakorlása | Sorrendbe rakó (Idővonal) | Összekevert lépések/események rendezése fel/le gombokkal a helyes sorrendig. |
-| Kategorizálás, tulajdonságok szétválogatása | Kétirányú válogató | Középen megjelenik egy állítás vagy kép, a diák két gomb közül választ (pl. *Igaz / Hamis* vagy *Savas / Lúgos*). |
-| Ok-okozati összefüggések, döntéshozatal | Szituációs döntéshozó | Rövid helyzetleírás + 2-3 választási lehetőség, ahol minden döntés megváltoztat egy mérőszámot (pl. *erőforrás, elégedettség*). |
-| Gyors felismerés, kivételek keresése | Kakukktojás-kereső | 4-6 elem közül ki kell választani azt az egyet, amelyik nem illik a sorba, majd elolvasni az indoklást. |
-| Szövegértés, definíciók és kulcsszavak használata | Lyukas szöveg (Cloze test) | Hiányzó szavak behelyettesítése egy szövegbe egy megadott szóbankból kattintással. |
-| Idegen szavak, kulcsfogalmak helyesírása | Akasztófa / Szókitaláló | Fogalmak vagy szavak betűnkénti kitalálása korlátozott próbálkozással, vizuális visszajelzéssel. |
-| Fogalmak felidézése meghatározások alapján | Keresztrejtvény / Szókereső | Rácsban elrejtett kulcsszavak megkeresése vagy beírása a megadott definíciók alapján. |
-| Összefüggések keresése, rendszerező gondolkodás | Kategória-mátrix (Connections) | 16 összekevert fogalomból kell négy darab 4-es tematikus csoportot alkotni kattintással. |
-| Térképi tájékozódás, ábrák és részek azonosítása | Címkéző (Hotspot / Képfelismerő) | Egy ábra vagy térkép megjelölt pontjaira kattintva kell kiválasztani a megfelelő megnevezést. |
-| Összetettebb rendszerezés több szempont szerint | Többirányú válogató (Kosárba rakó) | Megjelenő elemek szétválogatása 3-4 különböző gyűjtődobozba (pl. *emlősök, hüllők, madarak*). |
-| Kritikus olvasás, hibajavítás, szabályalkalmazás | Hibakereső (Debug / Lektor) | Egy hibás szövegben, képletben vagy kódrészletben kell rákattintani a hibás elemekre. |
-| Tudásszint felmérése, fokozatos mélyítés | Lépcsőzetes kvíz (Milliomos) | Egyre nehezedő kérdések segítségekkel (pl. felező), ahol egy hiba megszakítja a sorozatot. |
-| Gyorsaság, automatizálás, reflexszerű tudás | Villámkvíz (Time Attack) | Minél több helyes válasz megadása 60 másodperc alatt, folyamatos kombó-pontozással. |
-| Komplex problémamegoldás, logikai láncolatok | Szabadulószoba (Mini Escape Room) | 3-4 egymásra épülő logikai feladvány, amelyek megoldása egy-egy számjegyet ad a végső lakatkódhoz. |
+| Kognitív szint (Bloom) | Pedagógiai cél (Amit a tanár tud) | Ajánlott játéktípus (A) | Játékmenet lényege és mechanikai fókusz (B) |
+| :--- | :--- | :--- | :--- |
+| **1. Felidézés & Megértés** | Fogalmak, szakszavak, évszámok rögzítése | Kártyapárosító / Memória | Két oszlopban kattintással összeköthető párok, azonnali visszajelzéssel. |
+| **1. Felidézés & Megértés** | Gyorsaság, automatizálás, reflexszerű tudás | Villámkvíz (Time Attack) | Minél több helyes válasz megadása 60 mp alatt, folyamatos kombó-pontozással (*időnyomás*). |
+| **1. Felidézés & Megértés** | Idegen szavak, kulcsfogalmak helyesírása | Akasztófa / Szókitaláló | Fogalmak betűnkénti kitalálása korlátozott próbálkozással, vizuális visszajelzéssel. |
+| **1. Felidézés & Megértés** | Fogalmak felidézése meghatározások alapján | Keresztrejtvény / Szókereső | Rácsban elrejtett kulcssavak megkeresése vagy beírása a megadott definíciók alapján. |
+| **2. Alkalmazás** | Szövegértés, definíciók használata kontextusban | Lyukas szöveg (Cloze test) | Hiányzó szavak behelyettesítése egy szövegbe egy megadott szóbankból kattintással. |
+| **2. Alkalmazás** | Kritikus olvasás, hibajavítás, szabályalkalmazás | Hibakereső (Debug / Lektor) | Egy hibás szövegben, képletben vagy kódrészletben kell rákattintani a hibás elemekre. |
+| **2. Alkalmazás** | Térképi tájékozódás, ábrák és részek azonosítása | Címkéző (Hotspot / Képfelismerő) | Egy ábra vagy térkép megjelölt pontjaira kattintva kell kiválasztani a megfelelő megnevezést. |
+| **3. Elemzés & Rendszerezés** | Folyamatok, időrend, hierarchia gyakorlása | Sorrendbe rakó (Idővonal) | Összekevert lépések/események rendezése fel/le gombokkal a helyes sorrendig. |
+| **3. Elemzés & Rendszerezés** | Kategorizálás, tulajdonságok szétválogatása | Kétirányú válogató | Középen megjelenik egy állítás vagy kép, a diák két gomb közül választ (pl. *Igaz / Hamis*). |
+| **3. Elemzés & Rendszerezés** | Összetettebb rendszerezés több szempont szerint | Többirányú válogató (Kosárba rakó) | Megjelenő elemek szétválogatása 3-4 különböző gyűjtődobozba (pl. *emlősök, hüllők, madarak*). |
+| **3. Elemzés & Rendszerezés** | Gyors felismerés, kivételek keresése | Kakukktojás-kereső | 4-6 elem közül ki kell választani azt az egyet, amelyik nem illik a sorba, majd elolvasni az indoklást. |
+| **3. Elemzés & Rendszerezés** | Összefüggések keresése, mintafelismerés | Kategória-mátrix (Connections) | 16 összekevert fogalomból kell négy darab 4-es tematikus csoportot alkotni kattintással. |
+| **4. Értékelés & Problémamegoldás** | Tudásszint felmérése, fokozatos mélyítés | Lépcsőzetes kvíz (Milliomos) | Egyre nehezedő kérdések segítségekkel (pl. felező), ahol egy hiba megszakítja a sorozatot. |
+| **4. Értékelés & Problémamegoldás** | Ok-okozati összefüggések, döntéshozatal | Szituációs döntéshozó | Helyzetleírás + 2-3 választási lehetőség, ahol minden döntés megváltoztat egy mérőszámot (*erőforrások*). |
+| **4. Értékelés & Problémamegoldás** | Komplex problémamegoldás, logikai láncolatok | Szabadulószoba (Mini Escape Room) | 3-4 egymásra épülő logikai feladvány, amelyek megoldása egy-egy számjegyet ad a végső lakatkódhoz. |
 
 ---
 
@@ -75,6 +92,7 @@ Mindegyiknél írd le röviden:
 1. Mi a játék neve és lényege?
 2. Mit lát és mire kattint a diák a képernyőn?
 3. Mi történik jó és rossz válasz esetén?
+4. Hogyan segíti a játék a lemaradó diákokat (pl. tippek, újbóli próbálkozás), és hogyan tartja fenn a gyorsabbak motivációját?
 
 Még ne írj kódot, csak a 3 koncepciót mutasd meg, hogy kiválaszthassam a legjobbat!
 ```
@@ -95,6 +113,7 @@ A taneszköz adatai:
 Játékmechanika és működés:
 - Játéktípus: [pl. Kártyapárosító / Idővonal-rendező / Kétirányú válogató]
 - Játékmenet: [Ide másold be az 1. lépésben kiválasztott játékmenetet, vagy írd le röviden, mire kattint a diák!]
+- Visszajelzés és hibakezelés: [pl. Hibás válasz esetén mutasson egy rövid segítő magyarázatot, és tegye vissza a kérdést a kör végére / Legyen 3 élet és kombó-pontozás]
 - Tartalom (ezeket használd a játékban):
   1. [Elem 1 - pl. Nyelőcső: Továbbítja a falatot a gyomorba]
   2. [Elem 2 - pl. Gyomor: Savas közegben bontja a fehérjéket]
@@ -114,5 +133,5 @@ Design és technikai követelmények:
 ### 💡 3 aranyszabály a kipróbáláshoz
 
 1. **Mindig teszteld mobilon!** A diákok többsége telefonon nyitja meg a QR-kódot vagy a linket. Ha valami túl apró vagy lelóg a képernyőről, írd vissza az AI-nak: *"Tedd nagyobbá a gombokat és igazítsd a nézetet álló mobilképernyőhöz!"*
-2. **Ne félj finomítani!** Az első verzió csak egy kiindulópont. Bátran kérj módosításokat: *"Adj hozzá minden jó válasz után egy 1 mondatos magyarázatot!"* vagy *"Legyen benne 3 élet (szív), ami hibánál elfogy."*
+2. **Ne félj finomítani!** Az első verzió csak egy kiindulópont. Bátran kérj módosításokat: *"Adj hozzá minden jó válasz után egy 1 mondatos magyarázatot!"* vagy *"Ha a diák hibázik, tegye vissza a kérdést a sor végére, hogy újra gyakorolhassa."*
 3. **Használd újra a kódot!** Ha egy játékmechanika bevált, nem kell újraprogramoztatni: nyisd meg a GitHubon az `index.html` fájlt, keresd meg a kód elején a szavakat/kérdéseket tartalmazó listát, és írd át őket a következő óra anyagára!
