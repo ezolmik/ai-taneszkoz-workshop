@@ -34,6 +34,8 @@ Egy jó oktatójáték kétféle visszacsatolással tartja egyensúlyban a nehé
 
 ### 🗺️ Pedagógiai fordítókulcs (LM-GM mátrix): Milyen célhoz milyen játék illik?
 
+*LM: Learning Mechanics, GM: Game Mechanics*. 
+
 A táblázat a Bloom-taxonómia kognitív szintjei szerint rendezi a pedagógiai célokat és a hozzájuk illő játékmechanikákat. Keresd ki a tanórai célodat!
 
 | Kognitív szint (Bloom) | Pedagógiai cél (Amit a tanár tud) | Ajánlott játéktípus | Játékmenet lényege és mechanikai fókusz | 
