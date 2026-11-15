@@ -46,9 +46,10 @@ Nagyobb ötleted van? Írd át az egyik példa promptját,
 
 ### 📚 Módszertani háttér
 
-A workshop megközelítése a modern oktatástechnológia és a szoftvertervezés határterületére épít, ahol a pedagógus nem passzív felhasználója, hanem aktív tervezője a digitális tanulási környezetnek:
+A workshop megközelítése a modern oktatástechnológia, a játéktervezés és a szoftverarchitektúra határterületére épít, ahol a pedagógus aktív tervezője a digitális tanulási környezetnek:
 
 - **Teachers as Designers (TaD of TEL):** A neveléstudományi irányzat alapvetése, hogy a tanárok a saját tanulócsoportjuk egyedi igényeire szabott digitális eszközöket terveznek *(McKenney & Kali)*.
 - **TPACK keretrendszer:** A hatékony taneszköz a szaktárgyi tudás (*Tartalom*), a módszertan (*Pedagógia*) és a digitális keret (*Technológia*) metszetében születik *(Mishra & Koehler)*.
 - **Learning Experience Design (LXD):** A hagyományos oktatástervezés *(Instructional Design)* és a felhasználói élmény *(UX)* ötvözése, amely a diákok interakcióira és azonnali visszacsatolására épít.
+- **Game Design Patterns & LM-GM modell:** A játékmechanikák szoftveres tervezési mintákra épülnek *(Björk & Holopainen)*, amelyeket a *Learning Mechanics – Game Mechanics* modell *(Arnab et al.)* közvetlenül a Bloom-taxonómiából ismert tanulási folyamatokkal kapcsol össze.
 - **End-User Development & Vibe Coding:** A programozói előképzettség nélküli szoftveralkotás gyakorlata, ahol a tanár természetes nyelven, pedagógiai szándékkal irányítja a kódgenerálást.
