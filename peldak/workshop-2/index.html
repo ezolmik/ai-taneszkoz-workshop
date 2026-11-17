@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Találd meg a párját!</title>
+
+  <script>
+    // SZÓPÁROK – itt cserélhetők vagy bővíthetők a játék szavai.
+    const WORD_PAIRS = [
+      { en: "apple",  hu: "alma" },
+      { en: "book",   hu: "könyv" },
+      { en: "bridge", hu: "híd" },
+      { en: "chair",  hu: "szék" },
+      { en: "garden", hu: "kert" },
+      { en: "window", hu: "ablak" }
+    ];
+  </script>
+
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, sans-serif;
+      color: #142637;
+      background: #eef4f8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: clamp(12px, 3vw, 36px);
+    }
+
+    main {
+      max-width: 960px;
+      margin-inline: auto;
+      padding: clamp(16px, 4vw, 36px);
+      border: 1px solid #ccdbe5;
+      border-radius: 22px;
+      background: #fff;
+      box-shadow: 0 12px 36px #1426370d;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.85rem, 4.5vw, 3rem);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+    }
+
+    .instructions {
+      margin: 10px 0 20px;
+      color: #405467;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .progress {
+      margin: 0;
+      font-weight: 750;
+      font-size: 1.125rem;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    button:focus-visible {
+      outline: 3px solid #183a86;
+      outline-offset: 3px;
+    }
+
+    .restart {
+      min-height: 44px;
+      padding: 8px 14px;
+      border: 1px solid #8198aa;
+      border-radius: 10px;
+      background: #fff;
+      color: #142637;
+      font-weight: 700;
+    }
+
+    .feedback {
+      display: flex;
+      align-items: center;
+      min-height: 3.25em;
+      margin: 10px 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: #edf4f9;
+      font-weight: 650;
+    }
+
+    .feedback[data-kind="success"] {
+      background: #e4f5e9;
+      color: #175b36;
+    }
+
+    .feedback[data-kind="error"] {
+      background: #fff0e9;
+      color: #8a351b;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(10px, 4vw, 36px);
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      color: #405467;
+      font-size: clamp(1rem, 2.4vw, 1.3rem);
+    }
+
+    .words {
+      display: grid;
+      gap: 8px;
+    }
+
+    .word {
+      position: relative;
+      width: 100%;
+      min-height: clamp(48px, 6vw, 70px);
+      padding: 8px clamp(23px, 4vw, 40px);
+      border: 2px solid #b8cad8;
+      border-radius: 12px;
+      background: #f8fbfe;
+      color: #142637;
+      font-size: clamp(1rem, 2.8vw, 1.65rem);
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    @media (hover: hover) {
+      .restart:hover { background: #edf4f9; }
+      .word:not([aria-disabled="true"]):hover { border-color: #365d9c; }
+    }
+
+    .word[aria-pressed="true"] {
+      border-color: #183a86;
+      background: #e0ebff;
+      box-shadow: inset 0 0 0 2px #183a86;
+    }
+
+    .word[data-result="wrong"] {
+      border-color: #a24a2e;
+      background: #fff0e9;
+    }
+
+    .word[aria-disabled="true"] {
+      border-color: #87b99a;
+      background: #e4f5e9;
+      color: #175b36;
+      cursor: default;
+    }
+
+    .mark {
+      position: absolute;
+      top: 50%;
+      right: clamp(6px, 1.5vw, 16px);
+      transform: translateY(-50%);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Találd meg a párját!</h1>
+    <p class="instructions">Válassz egy angol szót és a magyar megfelelőjét!</p>
+
+    <div class="toolbar">
+      <p class="progress" id="progress"></p>
+      <button class="restart" id="restart" type="button">Újrakezdés</button>
+    </div>
+
+    <p class="feedback" id="feedback" role="status" aria-atomic="true"></p>
+
+    <div class="board">
+      <section aria-labelledby="english-title">
+        <h2 id="english-title">Angol</h2>
+        <div class="words" id="english"></div>
+      </section>
+      <section aria-labelledby="hungarian-title">
+        <h2 id="hungarian-title">Magyar</h2>
+        <div class="words" id="hungarian"></div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const columns = {
+      en: document.getElementById("english"),
+      hu: document.getElementById("hungarian")
+    };
+    const progress = document.getElementById("progress");
+    const feedback = document.getElementById("feedback");
+    const restart = document.getElementById("restart");
+    const pairIds = WORD_PAIRS.map((_, index) => index);
+
+    const selected = { en: null, hu: null };
+    let wrongButtons = [];
+    let found = 0;
+
+    function shuffle(items) {
+      const shuffled = [...items];
+
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+
+      return shuffled;
+    }
+
+    function updateProgress() {
+      progress.textContent = `Megtalált párok: ${found} / ${WORD_PAIRS.length}`;
+    }
+
+    function showFeedback(message, kind = "") {
+      feedback.dataset.kind = kind;
+      feedback.textContent = message;
+    }
+
+    function setSelected(button, isSelected) {
+      button?.setAttribute("aria-pressed", String(isSelected));
+    }
+
+    function markMatched(button) {
+      button.setAttribute("aria-disabled", "true");
+      button.tabIndex = -1;
+      button.querySelector(".mark").textContent = "✓";
+      button.querySelector(".mark").setAttribute("aria-hidden", "false");
+      button.querySelector(".mark").setAttribute("aria-label", "Megtalálva");
+    }
+
+    function chooseWord(language, button) {
+      if (button.getAttribute("aria-disabled") === "true") return;
+
+      for (const wrongButton of wrongButtons) {
+        delete wrongButton.dataset.result;
+        wrongButton.querySelector(".mark").textContent = "";
+      }
+      wrongButtons = [];
+
+      const previous = selected[language];
+      setSelected(previous, false);
+      selected[language] = previous === button ? null : button;
+      setSelected(selected[language], true);
+
+      const { en, hu } = selected;
+
+      if (!en || !hu) {
+        if (en) showFeedback("Most válassz egy magyar szót.");
+        else if (hu) showFeedback("Most válassz egy angol szót.");
+        else showFeedback("Válassz egy szót bármelyik oszlopból.");
+        return;
+      }
+
+      for (const choice of [en, hu]) setSelected(choice, false);
+      selected.en = null;
+      selected.hu = null;
+
+      if (en.dataset.pair !== hu.dataset.pair) {
+        wrongButtons = [en, hu];
+        for (const wrongButton of wrongButtons) {
+          wrongButton.dataset.result = "wrong";
+          wrongButton.querySelector(".mark").textContent = "×";
+        }
+        showFeedback("Ez a két szó nem pár. Próbáld újra!", "error");
+        return;
+      }
+
+      markMatched(en);
+      markMatched(hu);
+      found++;
+      updateProgress();
+
+      if (found === WORD_PAIRS.length) {
+        showFeedback("Gratulálok! Megtaláltad az összes párt!", "success");
+      } else {
+        showFeedback("Helyes pár! Keresd a következőt!", "success");
+      }
+    }
+
+    function createWordButton(language, pairId) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "word";
+      button.dataset.pair = String(pairId);
+      button.setAttribute("aria-pressed", "false");
+
+      const word = document.createElement("span");
+      word.lang = language;
+      word.textContent = WORD_PAIRS[pairId][language];
+
+      const mark = document.createElement("span");
+      mark.className = "mark";
+      mark.setAttribute("aria-hidden", "true");
+
+      button.append(word, mark);
+      button.addEventListener("click", () => chooseWord(language, button));
+      return button;
+    }
+
+    function startGame(message) {
+      selected.en = null;
+      selected.hu = null;
+      wrongButtons = [];
+      found = 0;
+
+      for (const language of ["en", "hu"]) {
+        const buttons = shuffle(pairIds).map(
+          pairId => createWordButton(language, pairId)
+        );
+        columns[language].replaceChildren(...buttons);
+      }
+
+      updateProgress();
+      showFeedback(message);
+    }
+
+    restart.addEventListener("click", () => {
+      startGame("Új játék indult. Válassz egy szót!");
+    });
+
+    startGame("Válassz egy szót bármelyik oszlopból.");
+  </script>
+</body>
+</html>
